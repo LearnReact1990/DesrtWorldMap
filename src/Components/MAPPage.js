@@ -9,7 +9,7 @@ const DefaultZoomValue = 5
 
 const defatluInitialMapAxis = {
   defaultLongitute: -6.5532048,
-  defaultLattiture: 29.7720485
+  defaultLattiture: 29.7720485,
 }
 
 const MapPage = () => {
@@ -33,12 +33,21 @@ const MapPage = () => {
     setDefaultMapAxis(defatluInitialMapAxis)
   }
 
+  const ZoomToPlace = (logitude, lattitude) => {
+    console.log("Zooming" + logitude + " " + lattitude)
+    setZoomValue(15)
+    setDefaultMapAxis({
+      defaultLongitute: logitude,
+      defaultLattiture: lattitude,
+    })
+  }
+
   useEffect(() => {
     let view
     let id = "e691172598f04ea8881cd2a4adaa45ba"
     loadModules(["esri/views/MapView", "esri/WebMap", "esri/layers/GeoJSONLayer", "esri/widgets/Expand"], { css: true }).then(([MapView, WebMap, GeoJSONLayer, Expand]) => {
       const webmap = new WebMap({
-        basemap: "gray-vector" //"topo-vector"
+        basemap: "gray-vector", //"topo-vector"
 
         // autocasts as new PortalItem()
         // portalItem: {
@@ -52,10 +61,10 @@ const MapPage = () => {
           {
             fieldName: "time",
             format: {
-              dateFormat: "short-date-short-time"
-            }
-          }
-        ]
+              dateFormat: "short-date-short-time",
+            },
+          },
+        ],
       }
       const renderer = {
         type: "simple",
@@ -64,9 +73,9 @@ const MapPage = () => {
           type: "simple-marker",
           color: "orange",
           outline: {
-            color: "white"
-          }
-        }
+            color: "white",
+          },
+        },
       }
 
       const geoJson = new GeoJSONLayer({
@@ -74,7 +83,7 @@ const MapPage = () => {
         //url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
         url: "https://raw.githubusercontent.com/apelserg/data-osm-getdata/master/geojson/osmway-desert.geojson",
         popupTemplate: template,
-        renderer: renderer
+        renderer: renderer,
       })
 
       webmap.add(geoJson)
@@ -82,16 +91,16 @@ const MapPage = () => {
         map: webmap,
 
         // center: [-118.805, 34.027],
-        center: [defatluInitialMapAxis.defaultLongitute, defatluInitialMapAxis.defaultLattiture],
+        center: [defaultMapAxis.defaultLongitute, defaultMapAxis.defaultLattiture],
         zoom: ZoomValue,
-        container: MAPDiv.current
+        container: MAPDiv.current,
       })
 
       const expand = new Expand({
         view: view,
         content: SearchBtn.current,
         expanded: true,
-        expandIconClass: "esri-icon-search"
+        expandIconClass: "esri-icon-search",
       })
 
       view.ui.add(expand, "top-right")
@@ -108,7 +117,7 @@ const MapPage = () => {
   return (
     <div style={{ height: 800 }} ref={MAPDiv}>
       <div ref={SearchBtn}>
-        <Button />
+        <Button ZoomToPlace={ZoomToPlace} />
       </div>
 
       <div ref={ZoomIn}>
