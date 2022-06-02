@@ -26,7 +26,7 @@ export default function Button({ ZoomToPlace }) {
     }
 
     getAllJson()
-  }, [])
+  })
 
   const handleSearch = (e) => {
     e.preventDefault()
