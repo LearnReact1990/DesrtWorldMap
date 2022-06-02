@@ -14,15 +14,7 @@ export default function Button({ ZoomToPlace, setExpand }) {
       const responce = await Axios.get("https://raw.githubusercontent.com/LearnReact1990/Test/master/osmway-desert.geojson")
       const geoJSONArry = responce.data
 
-      console.log("Returned Result")
-      console.log(geoJSONArry.features)
-      //desertPlaces = geoJSONArry.features
       setDesertPlaces([...geoJSONArry.features])
-      console.log(desertPlaces)
-      //setDesertDetails(arrys)
-      //console.log(desertDetails)
-      // console.log(geoJSONArry.features[0].properties.Name)
-      // console.log(geoJSONArry.features[0].geometry.coordinates)
     }
 
     getAllJson()
@@ -30,8 +22,6 @@ export default function Button({ ZoomToPlace, setExpand }) {
 
   const handleSearch = (e) => {
     e.preventDefault()
-
-    console.log(desertPlaces)
 
     const searchValue = e.target.value.toLowerCase()
 
@@ -43,9 +33,7 @@ export default function Button({ ZoomToPlace, setExpand }) {
       }
     })
 
-    console.log(arr)
     setDesertDetails(arr)
-    console.log(arr)
   }
 
   const loadPlace = (e, name, key) => {
@@ -63,8 +51,8 @@ export default function Button({ ZoomToPlace, setExpand }) {
   }
   return (
     <>
-      <div className="container mt-2 ml-2serach-bar-dropdown" style={{ width: 300 }}>
-        <input type="text" ref={inputText} className="form-control" placeholder="Search Desert" onChange={handleSearch} />
+      <div className="container mt-2 ml-2 serach-bar-dropdown " style={{ width: 300 }}>
+        <input type="text" ref={inputText} className="form-control border border-warning" placeholder="Search Desert" onChange={handleSearch} />
         <ul className="list-group">
           {desertDetails.map((desert, key) => {
             console.log("Inside" + desert.properties.Name)
