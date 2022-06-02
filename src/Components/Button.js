@@ -5,7 +5,7 @@ import Axios from "axios"
 export default function Button({ ZoomToPlace }) {
   let desertPlaces = []
 
-  const inputText = useRef()
+  let inputText = useRef()
 
   const [desertDetails, setDesertDetails] = useState([])
 
@@ -23,7 +23,7 @@ export default function Button({ ZoomToPlace }) {
     }
 
     getAllJson()
-  })
+  }, [])
 
   const handleSearch = (e) => {
     e.preventDefault()
