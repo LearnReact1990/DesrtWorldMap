@@ -27,11 +27,11 @@ export default function Button({ ZoomToPlace }) {
 
   const handleSearch = (e) => {
     e.preventDefault()
-    console.log(e.target.value)
+    const searchValue = e.target.value.toLowerCase()
 
     const arr = desertPlaces.filter((element) => {
       if (element.properties) {
-        return element.properties.Name.includes(e.target.value)
+        return element.properties.Name.toLowerCase().includes(searchValue)
       } else {
         return false
       }
@@ -42,11 +42,11 @@ export default function Button({ ZoomToPlace }) {
     console.log(arr)
   }
 
-  const loadPlace = (e, name) => {
+  const loadPlace = (e, name, key) => {
     e.preventDefault()
     console.log(name)
-    const logitude = desertDetails[0].geometry.coordinates[0]
-    const longitude = desertDetails[0].geometry.coordinates[1]
+    const logitude = desertDetails[key].geometry.coordinates[0]
+    const longitude = desertDetails[key].geometry.coordinates[1]
 
     console.log(logitude + "::" + longitude)
 
@@ -60,10 +60,10 @@ export default function Button({ ZoomToPlace }) {
       <div className="container mt-2 ml-2serach-bar-dropdown" style={{ width: 300 }}>
         <input type="text" ref={inputText} className="form-control" placeholder="Search Desert" onChange={handleSearch} />
         <ul className="list-group">
-          {desertDetails.map((desert) => {
+          {desertDetails.map((desert, key) => {
             console.log("Inside" + desert.properties.Name)
             return (
-              <button type="button" onClick={(e) => loadPlace(e, desert.properties.Name)} className="list-group-item list-group-item-action">
+              <button type="button" onClick={(e) => loadPlace(e, desert.properties.Name, key)} className="list-group-item list-group-item-action">
                 {desert.properties.Name}
               </button>
             )

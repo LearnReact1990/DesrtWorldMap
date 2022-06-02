@@ -107,12 +107,12 @@ const MapPage = () => {
       view.ui.add(ZoomIn.current, "bottom-right")
     })
 
-    return () => {
-      if (!view) {
-        //view.destroy()
-        view = null
-      }
-    }
+    // return () => {
+    //   if (!view) {
+    //     //view.destroy()
+    //     view = null
+    //   }
+    // }
   })
   return (
     <div style={{ height: 800 }} ref={MAPDiv}>
