@@ -81,7 +81,8 @@ const MapPage = () => {
       const geoJson = new GeoJSONLayer({
         // url: "https://www.nps.gov/lib/npmap.js/4.0.0/examples/data/national-parks.geojson",
         //url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
-        url: "https://raw.githubusercontent.com/apelserg/data-osm-getdata/master/geojson/osmway-desert.geojson",
+        //url: "https://raw.githubusercontent.com/apelserg/data-osm-getdata/master/geojson/osmway-desert.geojson",
+        url: "https://raw.githubusercontent.com/LearnReact1990/Test/master/osmway-desert.geojson",
         popupTemplate: template,
         renderer: renderer,
       })

@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react"
 import Axios from "axios"
 
 export default function Button({ ZoomToPlace }) {
-  let desertPlaces = []
+  const [desertPlaces, setDesertPlaces] = useState([])
 
   let inputText = useRef()
 
@@ -11,13 +11,16 @@ export default function Button({ ZoomToPlace }) {
 
   useEffect(() => {
     const getAllJson = async () => {
-      const responce = await Axios.get("https://raw.githubusercontent.com/apelserg/data-osm-getdata/master/geojson/osmway-desert.geojson")
+      const responce = await Axios.get("https://raw.githubusercontent.com/LearnReact1990/Test/master/osmway-desert.geojson")
       const geoJSONArry = responce.data
-      desertPlaces = geoJSONArry.features
 
+      console.log("Returned Result")
+      console.log(geoJSONArry.features)
+      //desertPlaces = geoJSONArry.features
+      setDesertPlaces([...geoJSONArry.features])
       console.log(desertPlaces)
       //setDesertDetails(arrys)
-      console.log(desertDetails)
+      //console.log(desertDetails)
       // console.log(geoJSONArry.features[0].properties.Name)
       // console.log(geoJSONArry.features[0].geometry.coordinates)
     }
@@ -27,6 +30,9 @@ export default function Button({ ZoomToPlace }) {
 
   const handleSearch = (e) => {
     e.preventDefault()
+
+    console.log(desertPlaces)
+
     const searchValue = e.target.value.toLowerCase()
 
     const arr = desertPlaces.filter((element) => {
