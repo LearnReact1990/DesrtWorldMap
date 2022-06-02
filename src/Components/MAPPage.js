@@ -6,7 +6,6 @@ import Button from "./Button"
 import Zoom from "./Zoom"
 
 const DefaultZoomValue = 5
-const defaultExpanded = false
 
 const defatluInitialMapAxis = {
   defaultLongitute: -6.5532048,
@@ -20,6 +19,7 @@ const MapPage = () => {
 
   const [ZoomValue, setZoomValue] = useState(DefaultZoomValue)
   const [defaultMapAxis, setDefaultMapAxis] = useState(defatluInitialMapAxis)
+  const [defaultExpanded, setdefaultExpanded] = useState(false)
 
   const handleZoomIn = () => {
     setZoomValue(ZoomValue + 1)
@@ -46,7 +46,7 @@ const MapPage = () => {
   }
 
   const setExpand = (value) => {
-    defaultExpanded = !value
+    setdefaultExpanded(value)
   }
 
   useEffect(() => {
@@ -86,9 +86,6 @@ const MapPage = () => {
       }
 
       const geoJson = new GeoJSONLayer({
-        // url: "https://www.nps.gov/lib/npmap.js/4.0.0/examples/data/national-parks.geojson",
-        //url: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
-        //url: "https://raw.githubusercontent.com/apelserg/data-osm-getdata/master/geojson/osmway-desert.geojson",
         url: "https://raw.githubusercontent.com/LearnReact1990/Test/master/osmway-desert.geojson",
         popupTemplate: template,
         renderer: renderer,
@@ -114,13 +111,6 @@ const MapPage = () => {
       view.ui.add(expand, "top-right")
       view.ui.add(ZoomIn.current, "bottom-right")
     })
-
-    // return () => {
-    //   if (!view) {
-    //     //view.destroy()
-    //     view = null
-    //   }
-    // }
   })
   return (
     <div style={{ height: 600 }} ref={MAPDiv}>
