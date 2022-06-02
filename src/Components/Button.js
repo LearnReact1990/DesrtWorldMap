@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import { useState, useEffect, useRef } from "react"
 import Axios from "axios"
 
-export default function Button({ ZoomToPlace }) {
+export default function Button({ ZoomToPlace, setExpand }) {
   const [desertPlaces, setDesertPlaces] = useState([])
 
   let inputText = useRef()

@@ -6,6 +6,7 @@ import Button from "./Button"
 import Zoom from "./Zoom"
 
 const DefaultZoomValue = 5
+const defaultExpanded = false
 
 const defatluInitialMapAxis = {
   defaultLongitute: -6.5532048,
@@ -40,6 +41,12 @@ const MapPage = () => {
       defaultLongitute: logitude,
       defaultLattiture: lattitude,
     })
+
+    setExpand = false
+  }
+
+  const setExpand = (value) => {
+    defaultExpanded = !value
   }
 
   useEffect(() => {
@@ -100,7 +107,7 @@ const MapPage = () => {
       const expand = new Expand({
         view: view,
         content: SearchBtn.current,
-        expanded: true,
+        expanded: defaultExpanded,
         expandIconClass: "esri-icon-search",
       })
 
@@ -118,7 +125,7 @@ const MapPage = () => {
   return (
     <div style={{ height: 800 }} ref={MAPDiv}>
       <div ref={SearchBtn}>
-        <Button ZoomToPlace={ZoomToPlace} />
+        <Button ZoomToPlace={ZoomToPlace} setExpand={setExpand} />
       </div>
 
       <div ref={ZoomIn}>
