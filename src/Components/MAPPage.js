@@ -44,7 +44,7 @@ const MapPage = () => {
 
   useEffect(() => {
     let view
-    let id = "e691172598f04ea8881cd2a4adaa45ba"
+
     loadModules(["esri/views/MapView", "esri/WebMap", "esri/layers/GeoJSONLayer", "esri/widgets/Expand"], { css: true }).then(([MapView, WebMap, GeoJSONLayer, Expand]) => {
       const webmap = new WebMap({
         basemap: "gray-vector", //"topo-vector"
