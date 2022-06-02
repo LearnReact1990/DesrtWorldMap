@@ -123,7 +123,7 @@ const MapPage = () => {
     // }
   })
   return (
-    <div style={{ height: 800 }} ref={MAPDiv}>
+    <div style={{ height: 600 }} ref={MAPDiv}>
       <div ref={SearchBtn}>
         <Button ZoomToPlace={ZoomToPlace} setExpand={setExpand} />
       </div>
